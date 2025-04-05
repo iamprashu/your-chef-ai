@@ -1,10 +1,11 @@
-import MainPanel from "./Components/MainPanel";
+import PanelHeader from "./Components/PanelHeader.jsx";
+import Panel from "./Components/Panel.jsx";
 
-export default function App(){
-  return(
-    <div className="bg-black h-screen w-[100%] flex items-center justify-around">
-
-<MainPanel/>
-    </div>
-  )
+export  default function App() {
+    return(
+        <div className="App h-screen bg-yellow-50 flex flex-col justify-arround items-center">
+            <PanelHeader/>
+            <Panel/>
+        </div>
+    )
 }
