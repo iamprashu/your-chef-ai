@@ -10,8 +10,14 @@ export default function Panel(){
   }
 
   function addItemToLog(){
-    addData((oldData)=>[...oldData,newItem]);
-    addNewItem('')
+
+    if(newItem){
+      addData((oldData)=>[...oldData,newItem]);
+      addNewItem('')
+    }else{
+      alert('sorry')
+    }
+    
   }
   
 
@@ -25,19 +31,12 @@ export default function Panel(){
       </div>
 
 
-      <div className="auto w-[100%] bg-inherit flex" >
+      <div className="auto w-[100%]  flex flex-col" >
         <h2 className="text-xl">Ingredients in hand:</h2>
-        <ul>
-          {data.map((item,index)=>(<li>{`${index+1} - ${item}`}</li>))}
+        <ul className="">
+          {data.map((item,index)=>(<li>{item}</li>))}
         </ul>
       </div>
     </div>
-
-    <div className="h-auto w-[100%]">
-      <p>Have you done adding items you have and need a recepie ?</p>
-      <button className="bg-gray-600 px-7 py-2 rounded-2xl hover:bg-gray-800"> Get Recepie </button>
-    </div>
-
-    
   </div>)
 }
