@@ -1,5 +1,5 @@
 import { useState } from "react"
-import {toast} from "react-toastify";
+import {toast} from "react-hot-toast";
 import CallAi from "./CallAi.jsx";
 
 export default function Panel(){
@@ -16,7 +16,7 @@ export default function Panel(){
         event.preventDefault()
         if(!itemsInHand){
             // alert('Please Enter Item Name')
-            toast('Hey!, Please Enter Name of Item.')
+            toast.error('Hey!, Please Enter Name of Item.')
         }else {
             setCount(count+1);
             setItemList((oldItems)=>[...oldItems,itemsInHand])
@@ -24,11 +24,11 @@ export default function Panel(){
         }
     }
     return(
-      <div className="  w-[60%] flex flex-col p-2 gap-5 items-center text-black">
+      <div className="md:w-[40%] min-h-[40%] flex flex-col p-2 gap-5 items-center bg-gray-600 text-black">
             <h1 className="text-xl text-black">Please enter at least 4 items</h1>
 
             <form onSubmit={addItem} className='flex gap-5'>
-              <input type="text" placeholder="Enter Items You Have...." className="bg-gray-700 w-80 h-10 rounded-2xl p-2 text-white" value={itemsInHand} onChange={(event)=>{setItemsInHand(event.target.value)}}></input>
+              <input type="text" placeholder="Enter Items You Have...." className="bg-gray-700 md:w-60 h-10 rounded-2xl p-2 text-white" value={itemsInHand} onChange={(event)=>{setItemsInHand(event.target.value)}}></input>
                 <button className="bg-gray-700 px-5 py-2 rounded-xl text-white hover:bg-gray-600 text-sm">Add Item</button>
             </form>
 
