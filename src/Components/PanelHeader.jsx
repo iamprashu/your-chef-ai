@@ -2,7 +2,7 @@
 export default function PanelHeader(){
     return (
       <div className="bg-gray-700 w-full min-h-[10%] p-2 sticky top-0 flex items-center justify-center">
-        <h1 className="font-borel text-4xl mt-5">Chef Ai <sub className="text-sm font-serif">a pocket chef.....</sub></h1>
+        <h1 className="font-borel text-4xl mt-5">Chef Ai <sub className="text-sm font-serif">your pocket chef.....</sub></h1>
         
       </div>
     )
