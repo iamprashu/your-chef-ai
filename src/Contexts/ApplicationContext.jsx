@@ -11,6 +11,8 @@ export default function ProviderApp({children}){
     const[itemsInHand,setItemsInHand] = useState('')
     const[itemList,setItemList] = useState([]);
     const[count,setCount] = useState(0);
+    const [showWarning, setShowWarning] = useState(true);
+
 
 
     function resetData(event){
@@ -47,15 +49,14 @@ export default function ProviderApp({children}){
         if(!itemsInHand){
             // alert('Please Enter Item Name')
             toast.error('Hey!, Please Enter Name of Item.')
-        }else {
+        }else if(itemList.length >= 10) {
+                toast.error(`Cannot Add More Items`)
+        }else{            
             setCount(count+1);
             setItemList((oldItems)=>[...oldItems,itemsInHand])
             setItemsInHand('')
         }
     }
-
-    
-
     async function getRecepie(event){
         setLoader(true);
         toast('Data has been sent.')
@@ -67,8 +68,7 @@ export default function ProviderApp({children}){
             const result = await client.predict("/chat", { 		
                 message: `I am giving you a list of ingredients. please think wisely and you can remove item (but don't say anything after removing) that are not needed suggest best recepie Please return exactly one recipe based on them.
 
-                Respond strictly in JSON format with the following structure in any condition just follow this any how:
-                
+                Respond strictly in JSON format with the following structure in any condition any issues happen just follow this any how:
                 {
                   "Recipe 1: <Recipe Title>": {
                     "Title": "<Recipe Title>",
@@ -96,7 +96,7 @@ export default function ProviderApp({children}){
     const value = {
         loader,setLoader,recipe,setRecipe,
         itemsInHand,setItemsInHand,
-        itemList,setItemList,resetData,DeleteItem,count,setCount,DeleteItemHandler,addItem,getRecepie
+        itemList,setItemList,resetData,DeleteItem,count,setCount,DeleteItemHandler,addItem,getRecepie,showWarning, setShowWarning
     }
 
     return( <ApplicationContext.Provider value={value}>
