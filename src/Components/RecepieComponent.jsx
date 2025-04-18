@@ -27,7 +27,7 @@ function RecepieComponent() {
         </ul>
 
         <h3 className="text-xl font-semibold mt-6 mb-2">👨‍🍳 Steps:</h3>
-        <ol className="list-decimal pl-6 space-y-2">
+        <ol className="pl-6 space-y-2">
           {recipeData.Steps.map((step, index) => (
             <li key={index}>{step}</li>
           ))}
@@ -38,7 +38,7 @@ function RecepieComponent() {
     
   } catch (error) {
     console.error('Recipe JSON parse failed:', error);
-    return <p className="text-red-500">Invalid recipe format. Please try again.</p>;
+    return <p className="text-red-500">Error occured from api, Please try after some time.</p>;
   }
 }
 
