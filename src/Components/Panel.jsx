@@ -11,7 +11,7 @@ export default function Panel(){
            
 
             <form onSubmit={addItem} className='w-full  flex flex-col gap-2 items-center justify-evenly md:w-[60%]'>
-                <h1 className="md:text-xl ">Please enter at least 4 items</h1>
+                <h1 className="md:text-xl ">Please enter at least 4 items and maximum 10</h1>
 
               <input type="text" placeholder="Enter Items You Have...." className="bg-gray-700 md:w-2/4 w-3/4 h-10 rounded-2xl p-2 text-white" value={itemsInHand} onChange={(event)=>{setItemsInHand(event.target.value)}}></input>
 
@@ -19,10 +19,10 @@ export default function Panel(){
 
             </form>
            <div className="w-full  flex flex-col gap-2 items-center justify-evenly md:w-[60%]">
-           <h1 className="md:text-xl ">You Have {count} items in you hand:</h1>
+           <h1 className="md:text-xl ">You have {count} items for the recepie</h1>
            <p className="md:text-xl">{itemList.map((item,index)=>{return (<span key={index}>{index+1}. {item}{index !== (itemList.length - 1) ? ', ' : ''} </span>)})}</p>
            </div>
         
-          <CallAi itemList={itemList} DeleteItemHandler = {DeleteItemHandler} count={count}/>
+          <CallAi/>
       </div>)
 }
