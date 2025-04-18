@@ -3,10 +3,12 @@ import Panel from "./Components/Panel.jsx";
 import {Toaster} from "react-hot-toast";
 import Recepie from "./Components/Recepie.jsx";
 import Warn from "./Components/Warn.jsx";
+import { Analytics } from "@vercel/analytics/react"
 
 export  default function App() {
     return(
         <div className="h-screen justify-arround items-center w-full bg-gray-600">
+            <Analytics/>
             <Warn/>
             <Toaster position="top-center" theme="light" toastOptions={{
     className: '',
