@@ -65,9 +65,9 @@ export default function ProviderApp({children}){
         try{
             const client = await Client.connect("prashantbisht/Chef");
             const result = await client.predict("/chat", { 		
-                message: `I am giving you a list of ingredients. Please return exactly one recipe based on them.
+                message: `I am giving you a list of ingredients. please think wisely and you can remove item (but don't say anything after removing) that are not needed suggest best recepie Please return exactly one recipe based on them.
 
-                Respond strictly in JSON format with the following structure:
+                Respond strictly in JSON format with the following structure in any condition just follow this any how:
                 
                 {
                   "Recipe 1: <Recipe Title>": {
