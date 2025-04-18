@@ -5,10 +5,13 @@ import Recepie from "./Components/Recepie.jsx";
 
 export  default function App() {
     return(
-        <div className="h-screen justify-arround items-center w-full">
-            <Toaster position="top-right" autoClose={1000} theme="light"/>
+        <div className="h-screen justify-arround items-center w-full bg-gray-600">
+            <Toaster position="top-center" theme="light" toastOptions={{
+    className: '',
+    duration: 1000,
+            }}/>
             <PanelHeader/>
-            <div className="flex flex-col md:flex-row h-[90%] md:min-h-[90%]">
+            <div className="min-h-[90%] flex flex-col items-center">
                 <Panel/>
                 <Recepie/>
             </div>
