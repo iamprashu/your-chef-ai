@@ -1,17 +1,25 @@
-// RecepieContext.jsx
+// RecepieComponent.jsx
 import React, { useContext } from 'react';
 import { ApplicationContext } from '../Contexts/ApplicationContext';
 
 function RecepieComponent() {
-  const { recipe,setItemList } = useContext(ApplicationContext);
-  console.log(recipe)
+  const { recipe } = useContext(ApplicationContext);
 
-  if (!recipe || typeof recipe[0] !== 'string') {
+  if (!recipe || recipe.length === 0) {
     return <p className="text-gray-300">No recipe available yet.</p>;
   }
 
+  let parsedData;
+
   try {
-    const parsedData = JSON.parse(recipe[0]);
+    const raw = recipe[0];
+
+    const cleaned = typeof raw === 'string'
+      ? raw.replace(/```json|```/g, '').trim()
+      : raw;
+
+    parsedData = typeof cleaned === 'string' ? JSON.parse(cleaned) : cleaned;
+
     const recipeKey = Object.keys(parsedData)[0];
     const recipeData = parsedData[recipeKey];
 
@@ -27,18 +35,21 @@ function RecepieComponent() {
         </ul>
 
         <h3 className="text-xl font-semibold mt-6 mb-2">👨‍🍳 Steps:</h3>
-        <ol className="pl-6 space-y-2">
+        <ol className="pl-6 space-y-2 list-decimal">
           {recipeData.Steps.map((step, index) => (
             <li key={index}>{step}</li>
           ))}
         </ol>
       </div>
-      
     );
-    
+
   } catch (error) {
     console.error('Recipe JSON parse failed:', error);
-    return <p className="text-red-500">Error occured from api, Please try after some time.</p>;
+    return (
+      <p className="text-red-500">
+        ⚠️ Error occurred while parsing the recipe. Please try again.
+      </p>
+    );
   }
 }
 
